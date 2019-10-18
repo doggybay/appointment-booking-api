@@ -11,10 +11,6 @@ exports.up = function(knex) {
     table.integer("creator_id").references("id").inTable("users").notNullable();
     table.integer("invitee_id").references("id").inTable("users");
     table.boolean("accepted").defaultTo(false);
-
-
-
-
   })
 };
 
