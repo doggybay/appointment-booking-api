@@ -4,6 +4,7 @@ exports.up = function(knex) {
     table.increments();
     table.integer("user_id").references("id").inTable("users");
     table.integer("appointment_id").references("id").inTable("appointments");
+    table.boolean("accepted").defaultTo(false);
   })
 };
 
