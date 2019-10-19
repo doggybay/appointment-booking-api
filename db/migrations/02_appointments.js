@@ -9,8 +9,6 @@ exports.up = function(knex) {
     table.time('time').notNullable();
     table.boolean("completed").defaultTo(false);
     table.integer("creator_id").references("id").inTable("users").notNullable();
-    
-    
   })
 };
 
