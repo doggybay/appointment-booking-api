@@ -5,6 +5,7 @@ const cors = require('cors');
 const logger = require('morgan');
 
 const users = require('./routes/users');
+const appointments = require('./routes/appointments')
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use('/api', users);
+app.use('/api', appointments)
 
 app.listen(port, function() {
   console.log("listening on port: ", port);
