@@ -6,17 +6,18 @@ exports.getAllAppointments = (req, res) => {
 }
 
 exports.getOneAppointment = (req, res) => {
-  knex('appointments').where('id', req.params.id).then(appointment => res.json(appointment))
+  Appointment.query().findById(req.params.id).eager('users').then(result => res.json(result))
 }
 
 exports.addOneAppointment = (req, res) => {
-  knex('appointments').insert(req.body).returning('*').then(newAppointment => res.json(newAppointment))
+  Appointment.query().insert(req.body).then(result => res.json(result)).catch(err => res.json(err))
+  
 }
 
 exports.updateOneAppointment = (req, res) => {
-  knex('appointments').update({ ...req.body }).where('id', req.params.id).returning('*').then(updatedAppointment => res.json(updatedAppointment))
+  Appointment.query().findById(req.params.id).patch(req.body).returning('*').then(updatedAppointment => res.json(updatedAppointment))
 }
 
 exports.deleteOneAppointment = (req, res) => {
-  knex('appointments').del().where('id', req.params.id).returning('*').then(deletedAppointment => res.json(deletedAppointment))
+  Appointment.query().deleteById(req.params.id).returning('*').then(deletedAppointment => res.json(deletedAppointment))
 }
