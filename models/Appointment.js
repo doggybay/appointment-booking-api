@@ -15,7 +15,7 @@ class Appointment extends Model {
           from: "appointments.id",
           through: {
             from: "users_appointments.appointment_id",
-            to: "user_appointments.user_id"
+            to: "users_appointments.user_id"
           },
           to: "users.id"
         }
