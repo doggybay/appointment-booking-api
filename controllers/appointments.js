@@ -21,3 +21,7 @@ exports.updateOneAppointment = (req, res) => {
 exports.deleteOneAppointment = (req, res) => {
   Appointment.query().deleteById(req.params.id).returning('*').then(deletedAppointment => res.json(deletedAppointment))
 }
+
+exports.completedOneAppointment = (req, res) => {
+  Appointment.query().findById(req.params.id).patch({ completed: true }).returning('*').then(updatedAppointment => res.json(updatedAppointment))
+}
