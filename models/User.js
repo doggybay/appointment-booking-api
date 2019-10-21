@@ -39,8 +39,9 @@ class User extends Model {
         created_at: { type: "string" },
         updated_at: { type: "string" }
       }
-    };
+    }
   }
 
 }
 
+module.exports = User
