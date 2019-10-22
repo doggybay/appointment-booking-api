@@ -1,5 +1,6 @@
 const knex = require("../db/knex");
+const User = require('../models/User')
 
 exports.getAllUsers = (req, res) => {
-  knex('users').then(users => res.json(users))
+  User.query().eager('appointments').then(result => res.json(result))
 }
