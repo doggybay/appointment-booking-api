@@ -11,6 +11,6 @@ router.get('/users', usersController.getAllUsers);
 router.get('/users/:id', usersController.getOneUser)
 
 //Get one user with appointments
-router.get('/users/:id/appointments')
+router.get('/users/:id/appointments', usersController.getOneUserAppts)
 
 module.exports = router;
