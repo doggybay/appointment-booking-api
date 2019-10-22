@@ -8,3 +8,10 @@ exports.getAllUsers = (req, res) => {
 exports.getOneUser = (req, res) => {
   User.query().findById(req.params.id).eager('appointments').then(user => res.json(user))
 }
+
+exports.getOneUserAppts = (req, res) => {
+  User.query().findById(req.params.id).eager('appointments').then(user => {
+
+    return res.json('Working on it')
+  })
+}
