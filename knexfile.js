@@ -1,11 +1,18 @@
-const homeConnString = 'postgres://db_access:freedom@192.168.2.211/appt-booking-app'
+const homeConnString = {
+  host: '192.168.2.211',
+  user: 'db_access',
+  password: 'freedom',
+  database: 'appt-booking-app',
+  port: 5432
+
+}
 const localConnString = 'postgres://db_access:freedom@localhost/appt-booking-app'
-let connectionString = process.platform === `win32' ? ${homeConnString} : 'postgres://localhost/appt-booking-app`
+let connectionString = process.platform === 'win32' ? 'postgres://db_access:freedom@localhost/appt-booking-app': 'postgres://localhost/appt-booking-app'
   
   module.exports = {
     development: {
         client: 'pg',
-        connection: connectionString,
+        connection: homeConnString,
         migrations: {
             directory: __dirname + '/db/migrations',
           },
@@ -25,3 +32,4 @@ let connectionString = process.platform === `win32' ? ${homeConnString} : 'postg
       },
   };
   
+  //'postgres://db_access:freedom@192.168.2.211/appt-booking-app'
