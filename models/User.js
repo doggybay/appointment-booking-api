@@ -13,12 +13,12 @@ class User extends Model {
         relation: Model.ManyToManyRelation,
         modelClass: Appointment,
         join: {
-          from: 'users.id',
+          from: "users.id",
           through: {
-            from: 'users_appointments.user_id',
-            to: 'users_appointments.appointment.id'
+            from: "users_appointments.user_id",
+            to: "users_appointments.appointment_id"
           },
-          to: 'appointments.id'
+          to: "appointments.id"
         }
       }
     }
