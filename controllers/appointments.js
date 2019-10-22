@@ -1,4 +1,3 @@
-const knex = require("../db/knex");
 const Appointment = require('../models/Appointment')
 
 exports.getAllAppointments = (req, res) => {
