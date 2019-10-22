@@ -1,4 +1,5 @@
 const Appointment = require('../models/Appointment')
+const knex = require('../db/knex')
 
 exports.getAllAppointments = (req, res) => {
   Appointment.query().eager('users').then(result => res.json(result))
@@ -8,8 +9,16 @@ exports.getOneAppointment = (req, res) => {
   Appointment.query().findById(req.params.id).eager('users').then(result => res.json(result))
 }
 
+//Creates a new appointment and inserts the new appointment details to the join table
 exports.addOneAppointment = (req, res) => {
-  Appointment.query().insert(req.body).then(result => res.json(result)).catch(err => res.json(err))
+  Appointment.query().insert(req.body).then(newAppointment => {
+    knex('users_appointments').insert({
+      user_id: newAppointment.creator_id,
+      appointment_id: newAppointment.id
+    }).then(result => result)
+    return res.json(newAppointment)
+    
+  }).catch(err => res.json(err))
   
 }
 
